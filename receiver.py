@@ -19,7 +19,7 @@ port = 9999
 riuscita = True
 try:
     socket = sk.socket()
-    socket.bind((id,port))
+    socket.bind(("",port))
     socket.listen(1)
 except sk.error as er:
     print(f"Qualcosa è andato storto... {er}")
@@ -27,4 +27,5 @@ except sk.error as er:
 
 if riuscita:
     conn, add = socket.accept()
+    ricevi(conn)
     
