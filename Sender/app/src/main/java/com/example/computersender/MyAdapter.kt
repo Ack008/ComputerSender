@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
 import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerAdapter(Address_ : MutableList<String>) : RecyclerView.Adapter<RecyclerAdapter.myViewHolder>(){
@@ -16,6 +18,13 @@ class RecyclerAdapter(Address_ : MutableList<String>) : RecyclerView.Adapter<Rec
 
     override fun onBindViewHolder(holder: RecyclerAdapter.myViewHolder, position: Int) {
         holder.testo.text = Address[position];
+        holder.testo.setOnClickListener{
+            Address.removeAt(position);
+
+            this.notifyItemRemoved(position)
+
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -27,6 +36,7 @@ class RecyclerAdapter(Address_ : MutableList<String>) : RecyclerView.Adapter<Rec
         var testo : TextView;
         init {
             testo = itemView.findViewById(R.id.textView3);
+
 
         }
 
