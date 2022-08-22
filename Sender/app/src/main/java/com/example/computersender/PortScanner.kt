@@ -10,7 +10,7 @@ class PortScanner (_ip : String, n1 : Int = 0, n2 : Int =255) {
         for( i in begin..end){
             try{
                 var socket = Socket();
-                socket.connect(InetSocketAddress("192.168.1.$i",9999),10)
+                socket.connect(InetSocketAddress("192.168.1.$i",9999),50)
                 socket.close();
                 Compatible.add("192.168.1.$i");
             } catch(e : Exception){

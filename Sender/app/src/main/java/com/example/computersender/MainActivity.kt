@@ -21,19 +21,24 @@ class MainActivity : AppCompatActivity() {
         var View = findViewById<RecyclerView>(R.id.view);
         View.layoutManager = LinearLayoutManager(this);
         var Addresses = mutableListOf<String>();
-        var Adapter = RecyclerAdapter(Addresses)
+        var Adapter = RecyclerAdapter(Addresses,this)
         View.adapter = Adapter;
 
         var ScanButton : Button = findViewById(R.id.scanBut);
         ScanButton.setOnClickListener {
+            ScanButton.isClickable  = false;
+            ScanButton.alpha = 0.5f;
             var portScanner = PortScanner("192.168.1", 0, 255);
 
             var t1 = Thread {
                 var stringa = portScanner.Run().toMutableList();
+                Addresses.clear();
                 Addresses.addAll(stringa);
                 var ui = runOnUiThread {
                     Adapter.notifyItemInserted(Addresses.size);
                 }
+                ScanButton.isClickable  = true;
+                ScanButton.alpha = 1.0f;
 
             }
             t1.start();
