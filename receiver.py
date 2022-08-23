@@ -16,6 +16,7 @@ while True:
     #print("msg" in msg)
     if("msg" in msg):
         print("shutdown")
+        server_socket.close()   
         os.system("shutdown /s /t 1")
         #break
         
